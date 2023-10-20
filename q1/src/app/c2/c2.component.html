@@ -1,0 +1,21 @@
+<form [formGroup] = "userForm" (submit)="onSubmit()" *ngIf="!isSubmitted" >
+    Username: <input type="text" id="username" name="username" formControlName="username" /><br>
+               <div *ngIf="userForm.controls['username'].touched && userForm.controls['username'].errors">
+                    <span *ngIf="userForm.controls['username'].errors['required']">Enter a Username</span>
+               </div>
+    Email: <input type="email" id="email" name="email" formControlName="email" /><br>
+    <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].errors">
+        <span *ngIf="userForm.controls['email'].errors['required']">Enter a email</span>
+        <span *ngIf="userForm.controls['email'].errors['email']">Enter in email format</span>
+   </div>
+    Password: <input type="password" id="password" name="password" formControlName="password" /><br>
+    <div *ngIf="userForm.controls['password'].touched && userForm.controls['password'].errors">
+        <span *ngIf="userForm.controls['password'].errors['required']">Enter a password</span>
+   </div>
+    <input type="submit" value="submit" />
+</form>
+<div *ngIf="isSubmitted" >
+    Username: <font size="5">{{user.username}}</font><br>
+    Email: <font size="5">{{user.email}}</font><br>
+    Password: <font size="5">{{user.password}}</font><br>
+</div>

@@ -1,0 +1,38 @@
+<div id="p1">
+<table [width]="700">
+    <tr>
+        <td>Roll No.: {{Roll_No}}</td>
+    </tr>
+    <tr>
+        <td>Name: {{Name}}</td>
+    </tr>
+    <tr>
+        <td>BirthDate: {{dob | date: 'dd MM, yyyy'}}</td>
+    </tr>
+</table>
+</div>
+<div id="p2">
+    <ul type="circle">
+        <li *ngFor="let f of fruits">
+            {{f}}
+        </li>
+    </ul>
+</div>
+<div id="p3">
+    <form>
+        <label for="cb1">Input number:</label>
+        <ng-select id="f1" name="f1" [(ngModel)]="SelectedInp" (change)="popUp()">
+            <ng-option *ngFor="let n of Inp" [value]="n.id" >{{n.name}}</ng-option>
+        </ng-select>
+    </form>
+</div>
+<div id="p4">
+    <form>
+        <label for="cb2">Input Type:</label>
+        <ng-select id="f2" name="f2" [(ngModel)]="selInp" >
+            <ng-option *ngFor="let i of inptp" [value]="i">{{i}}</ng-option>
+        </ng-select>
+        <input type="text" name="txt1" id="txt1" *ngIf="selInp=='textBox'"/>
+        <textarea name="area1" id="area1" *ngIf="selInp=='textArea'" rows="10" cols="10" ></textarea>
+    </form>
+</div>

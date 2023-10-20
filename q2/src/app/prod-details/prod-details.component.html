@@ -1,0 +1,61 @@
+<button (click)="AddProd()" >Add Product</button>
+<form [formGroup]="ProdForm" *ngIf="prod" (submit)="OnSub1()">
+    Product Name:<input type="text" id="Pname" name="Pname" formControlName="Pname" /><br>
+    <div *ngIf="ProdForm.controls['Pname'].touched && ProdForm.controls['Pname'].errors">
+         <span *ngIf="ProdForm.controls['Pname'].errors['required']">Enter a Product Name</span>
+    </div>
+    Product Color:<input type="text" id="color" name="color" formControlName="color" /><br>
+    <div *ngIf="ProdForm.controls['color'].touched && ProdForm.controls['color'].errors">
+         <span *ngIf="ProdForm.controls['color'].errors['required']">Enter a Product Color</span>
+    </div>
+    Product Price:<input type="text" id="price" name="price" formControlName="price" /><br>
+    <div *ngIf="ProdForm.controls['price'].touched && ProdForm.controls['price'].errors">
+         <span *ngIf="ProdForm.controls['price'].errors['required']">Enter a Product Price</span>
+    </div>
+    Category Name:<input type="text" id="Cname" name="Cname" formControlName="Cname" /><br>
+    <div *ngIf="ProdForm.controls['Cname'].touched && ProdForm.controls['Cname'].errors">
+         <span *ngIf="ProdForm.controls['Cname'].errors['required']">Enter a Category Name</span>
+    </div>
+    <input type="submit" value="submit" />
+</form>
+<table class="table table-hover">
+    <thead class="thead-dark" >
+        <tr>
+            <td>Product Name</td>
+            <td>Product Color</td>
+            <td>Product Price</td>
+            <td>Category Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of prodService.listProd">
+            <td>{{prod.Pname}}</td>
+            <td>{{prod.color}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.Cname}}</td>
+            <td><button (click)="chedprod(prod)">Edit</button></td>
+            <td><button (click)="deleteProd(prod._id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<form [formGroup]="EditProdForm" *ngIf="EditProd" (submit)="OnSub2()" >
+    Product Name:<input type="text" id="Pname" name="Pname" formControlName="Pname" [(ngModel)]="this.prodService.ProdData.Pname"/><br>
+    <div *ngIf="EditProdForm.controls['Pname'].touched && EditProdForm.controls['Pname'].errors">
+         <span *ngIf="EditProdForm.controls['Pname'].errors['required']">Enter a Product Name</span>
+    </div>
+    Product Color:<input type="text" id="color" name="color" formControlName="color" [(ngModel)]="this.prodService.ProdData.color"/><br>
+    <div *ngIf="EditProdForm.controls['color'].touched && EditProdForm.controls['color'].errors">
+         <span *ngIf="EditProdForm.controls['color'].errors['required']">Enter a Product Color</span>
+    </div>
+    Product Price:<input type="text" id="price" name="price" formControlName="price" [(ngModel)]="this.prodService.ProdData.price" /><br>
+    <div *ngIf="EditProdForm.controls['price'].touched && EditProdForm.controls['price'].errors">
+         <span *ngIf="EditProdForm.controls['price'].errors['required']">Enter a Product Price</span>
+    </div>
+    Category Name:<input type="text" id="Cname" name="Cname" formControlName="Cname" [(ngModel)]="this.prodService.ProdData.Cname" /><br>
+    <div *ngIf="EditProdForm.controls['Cname'].touched && EditProdForm.controls['Cname'].errors">
+         <span *ngIf="EditProdForm.controls['Cname'].errors['required']">Enter a Category Name</span>
+    </div>
+    <input type="submit" value="submit" />
+</form>
